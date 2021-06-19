@@ -1,0 +1,40 @@
+#include <GL/glut.h>
+#include<math.h>
+const int steps = 100;
+const float angle = 3.1416*2/steps;
+void init (void)
+{
+    glClearColor (0,0,0,1); //select clearing (background) color
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0.0, 1.0, 0.0, 1.0, -10.0, 10.0);
+}
+void display(void)
+{
+    float prevX = 0, prevY = 0, radious = 0.5;
+
+    glClear (GL_COLOR_BUFFER_BIT);
+    glColor3f (1,1,0);
+//Circle making using Polygon
+    glBegin(GL_POLYGON);
+    for(int i = 0; i<360;i++){
+       float theta = i*3.1416/180;
+        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
+        glVertex2f(0.5+radious*sin(theta),0.5-radious*cos(theta)); //second way
+    }
+glEnd();
+glFlush ();
+}
+
+int main(int argc, char** argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize (600, 600);
+    glutInitWindowPosition (100, 100);
+    glutCreateWindow ("Tree");
+    init ();
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
