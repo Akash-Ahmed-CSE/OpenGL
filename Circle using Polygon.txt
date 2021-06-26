@@ -1,6 +1,6 @@
 #include <GL/glut.h>
 #include<math.h>
-const int steps = 100;
+const int steps = 360;
 const float angle = 3.1416*2/steps;
 void init (void)
 {
@@ -17,7 +17,7 @@ void display(void)
     glColor3f (1,1,0);
 //Circle making using Polygon
     glBegin(GL_POLYGON);
-    for(int i = 0; i<360;i++){
+    for(int i = 0; i<steps;i++){
        float theta = i*3.1416/180;
         //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
         glVertex2f(0.5+radious*sin(theta),0.5-radious*cos(theta)); //second way
