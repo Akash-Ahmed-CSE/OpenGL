@@ -1,0 +1,194 @@
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+#include<math.h>
+const int steps = 360;
+const float angle = 3.1416*2/steps;
+
+
+void Sky()
+{
+
+       glBegin(GL_QUADS); // Sky
+      //Square
+      glColor3f(0.0, 0.7, 0.9);
+      glVertex3f(0.0f, 0.6f, 0.0f);
+      glColor3f(0.0, 0.0, 0.9);
+      glVertex3f(0.0f, 1.0f, 0.0f);
+      glColor3f(0.0, 0.0, 0.9);
+      glVertex3f(1.0f, 1.0f, 0.6f);
+      glColor3f(0.0, 0.7, 0.9);
+      glVertex3f(1.0f, 0.6f, 0.0f);
+      glEnd();//End quad coordinates
+
+
+}
+void smallTree()
+{
+    float a = 0.0;
+     glBegin(GL_TRIANGLES); //Begin quad coordinates
+      //Triangle
+      glColor3f(0.0, 0.35, 0.0); //Small Tree color
+
+for(int i =0; i<=8; i++){
+      glVertex3f(0.00f+a, 0.60f, 0.0f);
+      glVertex3f(0.02f+a, 0.635f, 0.0f);
+      glVertex3f(0.04f+a, 0.60f, 0.0f);
+
+      glVertex3f(0.04f+a, 0.60f, 0.0f);
+      glVertex3f(0.05f+a, 0.633f, 0.0f);
+      glVertex3f(0.06f+a, 0.60f, 0.0f);
+
+      glVertex3f(0.06f+a, 0.60f, 0.0f);
+      glVertex3f(0.08f+a, 0.648f, 0.0f);
+      glVertex3f(0.10f+a, 0.60f, 0.0f);
+
+      glVertex3f(0.10f+a, 0.60f, 0.0f);
+      glVertex3f(0.11f+a, 0.622f, 0.0f);
+      glVertex3f(0.12f+a, 0.60f, 0.0f);
+      a+=0.12;
+}
+
+      glEnd();//End quad coordinates
+}
+
+
+void circle(float rad, float color)
+{
+    float prevX = 0, prevY = 0, radious = rad;
+
+
+    glColor3f (color,color,0);
+//Circle making using Polygon
+    glBegin(GL_POLYGON);
+    for(int i = 0; i<steps;i++){
+       float theta = i*3.1416/180;
+        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
+        glVertex2f(0.5+radious*sin(theta),0.57-radious*cos(theta)); //second way
+    }
+glEnd();
+
+}
+void Earth()
+{
+       glBegin(GL_QUADS); // Earth
+      //Square
+      glColor3f(0.0, 0.4, 0.0);
+      glVertex3f(0.0f, 0.6f, 0.0f);
+      glColor3f(0.0, 0.4, 0.0);
+      glVertex3f(1.0f, 0.6f, 0.0f);
+      glColor3f(0.0, 0.8, 0.0);
+      glVertex3f(1.0f, 0.0f, 0.0f);
+      glColor3f(0.0, 0.8, 0.0);
+      glVertex3f(0.0f, 0.0f, 0.0f);
+      glEnd();//End quad coordinates
+
+}
+
+
+void tree(float position)
+{
+float b=0,c=0,d=0;
+
+for(int i =0; i<=6;i++){
+          glBegin(GL_TRIANGLES); //Begin quad coordinates
+      //Triangle
+      glColor3f(0.0, 0.6, 0.0);
+
+      glVertex3f(0.3f+position, 0.73f+b, 0.0f);
+      glVertex3f(0.31f+c+position, 0.70f+d, 0.0f);
+      glVertex3f(0.29f+b+position, 0.70f+d, 0.0f);
+      glEnd();//End quad coordinates
+    b-=0.02;
+    c+=0.02;
+    d-=0.04;
+}
+      glBegin(GL_QUADS); // Root
+      //Square
+      glColor3f(0.6, 0.3, 0.3);
+      glVertex3f(0.29f+position, 0.46f, 0.0f);
+      glVertex3f(0.31f+position, 0.46f, 0.0f);
+      glVertex3f(0.31f+position, 0.38f, 0.0f);
+      glVertex3f(0.29f+position, 0.38f, 0.0f);
+      glEnd();//End quad coordinates
+}
+
+
+void Stree(float positionx,float positiony,float color)
+{
+float b=0,c=0,d=0;
+
+for(int i =0; i<=6;i++){
+     glBegin(GL_TRIANGLES); //Begin quad coordinates
+      //Triangle
+      glColor3f(0.0, 0.3+color, 0.0);
+
+      glVertex3f(0.3f+positionx, 0.73f+b+positiony, 0.0f);
+      glVertex3f(0.31f+c+positionx, 0.70f+d+positiony, 0.0f);
+      glVertex3f(0.29f+b+positionx, 0.70f+d+positiony, 0.0f);
+      glEnd();//End quad coordinates
+    b-=0.02;
+    c+=0.02;
+    d-=0.04;
+}
+      glBegin(GL_QUADS); // Root
+      //Square
+      glColor3f(0.6, 0.3, 0.3);
+      glVertex3f(0.29f+positionx, 0.46f+positiony, 0.0f);
+      glVertex3f(0.31f+positionx, 0.46f+positiony, 0.0f);
+      glVertex3f(0.31f+positionx, 0.36f+positiony, 0.0f);
+      glVertex3f(0.29f+positionx, 0.36f+positiony, 0.0f);
+      glEnd();//End quad coordinates
+}
+
+void display(void)
+{
+
+    glClear (GL_COLOR_BUFFER_BIT);
+    glColor3f (1.0, 0.0, 0.0);
+
+
+
+        //Calling funtions
+        Sky();
+        circle(0.19,0.8);
+        circle(0.15,0.9);
+        circle(0.1,1);
+
+
+        smallTree();
+
+
+        Earth();
+
+        Stree(-0.1,0.05,0.0); // position x,y and color of the free
+        Stree(0.5,0.05,0.0);
+        tree(-0.3);
+        tree(0.0);
+        tree(0.4);
+        tree(0.7);
+
+        Stree(-0.2,-0.05,0.2);
+        Stree(0.6,-0.05,0.2);
+   glFlush ();
+}
+void init (void)
+{
+    glClearColor (0.0, 0.0, 0.0, 0.0); //select clearing (background) color
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0.0, 1.0, 0.0, 1.0, -10.0, 10.0);
+}
+
+int main(int argc, char** argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize (700, 600);
+    glutInitWindowPosition (100, 100);
+    glutCreateWindow ("Tree");
+    init ();
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
