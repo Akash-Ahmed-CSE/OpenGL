@@ -5,10 +5,8 @@
 const int steps = 360;
 const float angle = 3.1416*2/steps;
 
-
 void Sky()
 {
-
        glBegin(GL_QUADS); // Sky
       //Square
       glColor3f(0.0, 0.7, 0.9);
@@ -20,8 +18,6 @@ void Sky()
       glColor3f(0.0, 0.7, 0.9);
       glVertex3f(1.0f, 0.6f, 0.0f);
       glEnd();//End quad coordinates
-
-
 }
 void smallTree()
 {
@@ -48,10 +44,8 @@ for(int i =0; i<=8; i++){
       glVertex3f(0.12f+a, 0.60f, 0.0f);
       a+=0.12;
 }
-
       glEnd();//End quad coordinates
 }
-
 
 void circle(float rad, float color)
 {
@@ -82,39 +76,9 @@ void Earth()
       glColor3f(0.0, 0.8, 0.0);
       glVertex3f(0.0f, 0.0f, 0.0f);
       glEnd();//End quad coordinates
-
 }
 
-
-void tree(float position)
-{
-float b=0,c=0,d=0;
-
-for(int i =0; i<=6;i++){
-          glBegin(GL_TRIANGLES); //Begin quad coordinates
-      //Triangle
-      glColor3f(0.0, 0.6, 0.0);
-
-      glVertex3f(0.3f+position, 0.73f+b, 0.0f);
-      glVertex3f(0.31f+c+position, 0.70f+d, 0.0f);
-      glVertex3f(0.29f+b+position, 0.70f+d, 0.0f);
-      glEnd();//End quad coordinates
-    b-=0.02;
-    c+=0.02;
-    d-=0.04;
-}
-      glBegin(GL_QUADS); // Root
-      //Square
-      glColor3f(0.6, 0.3, 0.3);
-      glVertex3f(0.29f+position, 0.46f, 0.0f);
-      glVertex3f(0.31f+position, 0.46f, 0.0f);
-      glVertex3f(0.31f+position, 0.38f, 0.0f);
-      glVertex3f(0.29f+position, 0.38f, 0.0f);
-      glEnd();//End quad coordinates
-}
-
-
-void Stree(float positionx,float positiony,float color)
+void tree(float positionx,float positiony,float color)
 {
 float b=0,c=0,d=0;
 
@@ -151,25 +115,23 @@ void display(void)
 
         //Calling funtions
         Sky();
+
         circle(0.19,0.8);
         circle(0.15,0.9);
         circle(0.1,1);
 
-
         smallTree();
-
 
         Earth();
 
-        Stree(-0.1,0.05,0.0); // position x,y and color of the free
-        Stree(0.5,0.05,0.0);
-        tree(-0.3);
-        tree(0.0);
-        tree(0.4);
-        tree(0.7);
-
-        Stree(-0.2,-0.05,0.2);
-        Stree(0.6,-0.05,0.2);
+        tree(-0.1,0.05,0.0); // position x,y and color of the free
+        tree(0.5,0.05,0.0);
+        tree(-0.3,0,0.3);
+        tree(0,0,0.3);
+        tree(.4,0,0.3);
+        tree(.7,0,0.3);
+        tree(-0.2,-0.05,0.2);
+        tree(0.6,-0.05,0.2);
    glFlush ();
 }
 void init (void)
