@@ -161,6 +161,35 @@ glEnd();
 
 
 
+void circleCloud(float x, float y, float rad)
+{
+    float prevX = 0.0, prevY = 0.0, radious = rad;
+
+
+    glColor3f (.8,.8,.8);
+//Circle making using Polygon
+    glBegin(GL_POLYGON);
+    for(int i = 0; i<steps;i++){
+       float theta = i*3.1416/180;
+        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
+        glVertex2f(x+radious*sin(theta),y-radious*cos(theta)); //second way
+    }
+glEnd();
+
+}
+
+
+void Cloud(){
+
+    circleCloud(0.55,1.4,0.04);
+    circleCloud(0.5,1.4,0.052);
+    circleCloud(0.45,1.4,0.04);
+
+}
+
+
+
+
 
 void smallTree(float y, float color)
 {
@@ -225,9 +254,6 @@ glFlush ();
 
 
 
-
-
-
 void tree(float positionx,float positiony,float color)
 {
 float b=0,c=0,d=0;
@@ -262,6 +288,29 @@ void display(void)
 {
     Sky();
 
+    Cloud();
+
+    glPushMatrix();
+	glTranslated(-0.23,-.25,0);
+	glScaled(1,1,0);
+	Cloud();
+	glPopMatrix();
+
+
+
+
+    glPushMatrix();
+	glTranslated(1.1,-.05,0);
+	glScaled(1,1,0);
+	Cloud();
+	glPopMatrix();
+
+    glPushMatrix();
+	glTranslated(0.5,-.1,0);
+	glScaled(0.9,0.9,0);
+	Cloud();
+	glPopMatrix();
+
 
     glPushMatrix();
 	glTranslated(1,.7,0);
@@ -270,7 +319,11 @@ void display(void)
 	drawSun();
 	glPopMatrix();
 
-
+    glPushMatrix();
+	glTranslated(1.5,.7,0);
+	glScaled(0.5,0.5,0);
+	Cloud();
+	glPopMatrix();
 
 
 
@@ -290,9 +343,9 @@ void display(void)
 
 
    smallTree(0.02,0.45);
-   Far(0.0,-0.10,0.18,0.1,.2);
+   Far(0.0,-0.10,0.18,0.1,0.2);
    smallTree(-0.06,0.59);
-   Far(0.12,-0.18,.20,.2,.2);
+   Far(0.12,-0.18,.20,0.2,0.2);
 
 
 
@@ -361,18 +414,6 @@ void display(void)
    tree(1.80,0.40,0.2);
    tree(1.71,0.33,0.2);
    tree(1.62,0.28,0.2);
-
-
-
-
-
-
-
-
-
-
-
-
 
 glFlush ();
 }
