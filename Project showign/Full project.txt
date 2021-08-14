@@ -18,7 +18,7 @@ void drawWindmill() {
 	glVertex2f(-0.05f, 3);
 	glEnd();
 	glTranslatef(0, 3, 0);
-	glRotated(frameNumber * (180.0/46), 0, 0, 1);
+	glRotated(frameNumber * 3.5, 0, 0, 1);
 	glColor3f(0.4f, 0.4f, 0.8f);
 	for (i = 0; i < 3; i++) {
 		glRotated(120, 0, 0, 1);  // Note: These rotations accumulate.
@@ -31,15 +31,6 @@ void drawWindmill() {
 	}
 }
 
-void drawDisk(double radius) {
-	int d;
-	glBegin(GL_POLYGON);
-	for (d = 0; d < 32; d++) {
-		double angle = 2*PI/32 * d;
-		glVertex2d( radius*cos(angle), radius*sin(angle));
-	}
-	glEnd();
-}
 
 void drawSun() {
 	int i;
@@ -51,7 +42,6 @@ void drawSun() {
 		glVertex2f(0.75f, 0);
 		glEnd();
 	}
-	drawDisk(0.5);
 	glColor3f(0,0,0);
 }
 void doFrame(int v) {
@@ -165,7 +155,7 @@ glEnd();
 
 void circle(float rad, float color)
 {
-    float prevX = 0.0, prevY = 0.0, radious = rad;
+    float radious = rad;
 
 
     glColor3f (color,color,0);
@@ -173,7 +163,7 @@ void circle(float rad, float color)
     glBegin(GL_POLYGON);
     for(int i = 0; i<steps;i++){
        float theta = i*3.1416/180;
-        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
+
         glVertex2f(1+radious*sin(theta),0.70-radious*cos(theta)); //second way
     }
 glEnd();
@@ -182,7 +172,7 @@ glEnd();
 
 void circleCloud(float x, float y, float rad)
 {
-    float prevX = 0.0, prevY = 0.0, radious = rad;
+    float radious = rad;
 
 
     glColor3f (.8,.8,.8);
@@ -190,7 +180,6 @@ void circleCloud(float x, float y, float rad)
     glBegin(GL_POLYGON);
     for(int i = 0; i<steps;i++){
        float theta = i*3.1416/180;
-        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
         glVertex2f(x+radious*sin(theta),y-radious*cos(theta)); //second way
     }
 glEnd();
@@ -200,7 +189,7 @@ glEnd();
 void Cloud(float x, float y,float rad){
 
     circleCloud(0.55+x,1.4+y,0.04+rad);
-    circleCloud(0.5+x,1.4+y,0.052+rad);
+    circleCloud(0.5+x,1.415+y,0.052+rad);
     circleCloud(0.45+x,1.4+y,0.04+rad);
 
 }
@@ -254,6 +243,7 @@ for(int i =0; i<=6;i++){
     d-=0.04;
 }
       glBegin(GL_QUADS); // Root
+
       //Square
       glColor3f(0.6, 0.3, 0.3);
       glVertex3f(0.09f+positionx, 0.26f+positiony, 0.0f);
@@ -262,6 +252,7 @@ for(int i =0; i<=6;i++){
       glVertex3f(0.09f+positionx, 0.16f+positiony, 0.0f);
       glEnd();//End quad coordinates
 }
+
 
 
 void display(void)
@@ -299,7 +290,7 @@ void display(void)
 	drawSun();
 	glPopMatrix();
 
-
+    circle(0.23,0.7);
     circle(0.19,0.8);
     circle(0.15,0.9);
     circle(0.1,1.0);
@@ -343,6 +334,7 @@ void display(void)
 
     earth();
 
+
     tree(-0.07,0.65,0.07);
     tree(0.0,0.60,0.07);
     tree(0.1,0.55,0.07);
@@ -362,6 +354,8 @@ void display(void)
     tree(0.05,0.35,0.2);
     tree(0.12,0.30,0.2);
     tree(0.22,0.25,0.2);
+
+
 
 ///////////////////////////////////////////////////
 
@@ -383,6 +377,8 @@ void display(void)
     tree(1.80,0.40,0.2);
     tree(1.71,0.33,0.2);
     tree(1.62,0.28,0.2);
+
+
 
 glFlush ();
 }
