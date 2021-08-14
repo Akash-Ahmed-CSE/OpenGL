@@ -6,31 +6,6 @@ const int steps = 360;
 const float angle = 3.1416*2/steps;
 const double PI = 3.14156;
 
-int frameNumber = 0;
-
-void drawWindmill() {
-	int i;
-	glColor3f(0.8f, 0.8f, 0.9f);
-	glBegin(GL_POLYGON);
-	glVertex2f(-0.05f, 0);
-	glVertex2f(0.05f, 0);
-	glVertex2f(0.05f, 3);
-	glVertex2f(-0.05f, 3);
-	glEnd();
-	glTranslatef(0, 3, 0);
-	glRotated(frameNumber * (180.0/46), 0, 0, 1);
-	glColor3f(0.4f, 0.4f, 0.8f);
-	for (i = 0; i < 3; i++) {
-		glRotated(120, 0, 0, 1);  // Note: These rotations accumulate.
-		glBegin(GL_POLYGON);
-		glVertex2f(0,0);
-		glVertex2f(0.5f, 0.1f);
-		glVertex2f(1.5f,0);
-		glVertex2f(0.5f, -0.1f);
-		glEnd();
-	}
-}
-
 void drawDisk(double radius) {
 	int d;
 	glBegin(GL_POLYGON);
@@ -40,9 +15,6 @@ void drawDisk(double radius) {
 	}
 	glEnd();
 }
-
-
-
 
 void Sky()
 {
@@ -79,7 +51,6 @@ void earth(void)
     glVertex2d(1.30,0);
     glEnd();
 
-
     glBegin(GL_POLYGON);
     glVertex2d(1.30,0);
     glVertex2d(1.30,0.4);
@@ -93,10 +64,6 @@ void earth(void)
     glEnd();
 glFlush ();
 }
-
-
-
-
 
 void Far(float x, float y, float color1,float color2,float color3){
 
@@ -148,7 +115,7 @@ glEnd();
 
 void circle(float rad, float color)
 {
-    float prevX = 0.0, prevY = 0.0, radious = rad;
+    float radious = rad;
 
 
     glColor3f (color,color,0);
@@ -156,7 +123,6 @@ void circle(float rad, float color)
     glBegin(GL_POLYGON);
     for(int i = 0; i<steps;i++){
        float theta = i*3.1416/180;
-        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
         glVertex2f(1+radious*sin(theta),0.70-radious*cos(theta)); //second way
     }
 glEnd();
@@ -166,7 +132,7 @@ glEnd();
 
 void circleCloud(float x, float y, float rad)
 {
-    float prevX = 0.0, prevY = 0.0, radious = rad;
+    float radious = rad;
 
 
     glColor3f (.8,.8,.8);
@@ -174,7 +140,6 @@ void circleCloud(float x, float y, float rad)
     glBegin(GL_POLYGON);
     for(int i = 0; i<steps;i++){
        float theta = i*3.1416/180;
-        //glVertex2f(0.5+radious*cos(theta),0.5+radious*sin(theta));//one way
         glVertex2f(x+radious*sin(theta),y-radious*cos(theta)); //second way
     }
 glEnd();
@@ -253,49 +218,24 @@ void display(void)
 {
     Sky();
 
-
-
-
-
-
     circle(0.19,0.8);
     circle(0.15,0.9);
     circle(0.1,1.0);
 
-    glPushMatrix();
+
     Cloud(0,0,0);
-    glPopMatrix();
-
-    glPushMatrix();
     Cloud(-0.4,-0.2,0);
-    glPopMatrix();
-
-    glPushMatrix();
     Cloud(0.9,0,-0.01);
-    glPopMatrix();
-
-    glPushMatrix();
     Cloud(0.6,-0.2,0);
-    glPopMatrix();
-
-    glPushMatrix();
     Cloud(1.27,-0.2,0);
-    glPopMatrix();
 
 
-
-    glPushMatrix();
-    glTranslated(0.01,0.01,0);
     Far(-0.2,0,0,0,0);
-    glPopMatrix();
-
 
     smallTree(0.02,0.45);
     Far(0.0,-0.10,0.18,0.1,0.2);
     smallTree(-0.06,0.59);
     Far(0.12,-0.18,.20,0.2,0.2);
-
-
 
     earth();
 
