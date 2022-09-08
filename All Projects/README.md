@@ -1,15 +1,6 @@
 Dear Concerned, 
 
-I have done many project on OpenGL. Here are some demo images from my OpenGL project folder.
-
-
-### Landscape Scenery Car (3000+ line code)
-![](images/Screenshot_1.png)
-![](images/Screenshot_2.png)
-
-
-### Project Fox-Rain-Human.txt
-![](images/Screenshot_3.png)
+I have done many project on OpenGL. Here is a demo image from my OpenGL project folder.
 
 
 ### Project Landscape Architecture(day night rain)
