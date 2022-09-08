@@ -114,23 +114,14 @@ void frontscreen(void){
     drawstring(0.1,0.5,0.0,"STUDENT NAME");
 
     glColor3f(1,1,1);
-    drawstring(0.1,0.4,0.0,"Kaniz Fatema Any");
+    drawstring(0.1,0.4,0.0,"Akash Ahmed");
 
 
     glColor3f(1,1,1);
     drawstring(0.7,0.5,0.0,"STUDENT ID");
 
     glColor3f(1,1,1);
-    drawstring(0.7,0.4,0.0,"182-15-2096");
-
-    glColor3f(1,1,1);
-    drawstring(0.1,0.3,0.0,"Fahad Hasan Fahim");
-    glColor3f(1,1,1);
-    drawstring(0.7,0.3,0.0,"181-15-1735");
-    glColor3f(1,1,1);
-    drawstring(0.1,0.2,0.0,"Mira Khatun");
-    glColor3f(1,1,1);
-    drawstring(0.7,0.2,0.0,"182-15-2088");
+    drawstring(0.7,0.4,0.0,"181-15-1714");
 
     glColor3f(1,1,1);
     drawstring(0.35,0.1,0.0,"PRESS ENTER TO START");
